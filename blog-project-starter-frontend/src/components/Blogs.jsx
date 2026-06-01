@@ -26,7 +26,7 @@ if(user.uid === "W6s3vKNRG2R5HmuXi2aHtayZuic2"){
 }
             }
         })
-    }, [])
+    }, [backendBaseUrl])
 
 
 
