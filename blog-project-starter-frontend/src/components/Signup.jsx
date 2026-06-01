@@ -18,7 +18,7 @@ function Signup() {
                 navigate('/home');
             }
         })
-    }, []);
+    }, [navigate]);
 
     function registerUser(){
 createUserWithEmailAndPassword(auth,email,password).then( (data)=>{
