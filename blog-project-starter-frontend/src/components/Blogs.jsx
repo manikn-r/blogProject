@@ -8,10 +8,11 @@ function Blogs() {
     const [blogs, setBlogs] = useState([]);
 
     const [isAdmin, setAdmin] = useState(false)
+    const backendBaseUrl = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        axios.get(import.meta.env.VITE_BACKEND_URL+"/api/blogs").then((res) => {
+        axios.get(backendBaseUrl+"/api/blogs").then((res) => {
             console.log(res.data)
             setBlogs(res.data)
         }).catch(() => {
@@ -35,10 +36,10 @@ if(user.uid === "W6s3vKNRG2R5HmuXi2aHtayZuic2"){
 
     const handleLike = async (blog_id) => {
         try {
-            const response = await axios.patch(import.meta.env.VITE_BACKEND_URL+`/api/blogs/like/${blog_id}`);
+            const response = await axios.patch(backendBaseUrl+`/api/blogs/like/${blog_id}`);
             // After successfully updating the likes count in the backend, fetch the updated list of blogs
             if (response.status === 200) {
-                axios.get(import.meta.env.VITE_BACKEND_URL+"/api/blogs").then((res) => {
+                axios.get(backendBaseUrl+"/api/blogs").then((res) => {
                     console.log(res.data)
                     setBlogs(res.data)
                 }).catch(() => {
@@ -57,10 +58,10 @@ if(user.uid === "W6s3vKNRG2R5HmuXi2aHtayZuic2"){
 
 
         const likes = 0
-        axios.post(import.meta.env.VITE_BACKEND_URL+"/api/blogs", { newTitle, date, newContent, likes }).then((res) => {
+        axios.post(backendBaseUrl+"/api/blogs", { newTitle, date, newContent, likes }).then((res) => {
             console.log(res.data)
 
-            axios.get(import.meta.env.VITE_BACKEND_URL+"/api/blogs").then((res) => {
+            axios.get(backendBaseUrl+"/api/blogs").then((res) => {
                 console.log(res.data)
                 setBlogs(res.data)
             }).catch(() => {
